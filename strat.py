@@ -1,4 +1,11 @@
 import numpy
+import random
+
+def test_unitaire_numpy(liste):
+    return numpy.array(liste)
+
+test_unitaire_numpy([[0,1],[2,3]]) #exemple de vérification du module numpy
+
 
 liste=[(0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2),(2,3),(3,3),(3,2),(3,1),(3,0)]
 
@@ -8,6 +15,18 @@ def egale(mat1, mat2):
             if mat1[(i,j)]!=mat2[(i,j)]:
                 return False
     return True
+
+def test_unitaire_egale(a,b): #création de deux matrices carrées de taille 4 différentes composées d'entiers de [a,b]
+    A,B=[],[]
+    for k in range(4):
+        for j in range(4):
+            A[i][j]=random.randint(a,b)
+    B,C=A,A
+    C[3][3]=C[3][3]+1
+    return A,B
+
+egale(test_unitaire_egale(1,300)[0],test_unitaire_egale(1,300)[0]) #1 à 300 par exemple, doit retourner True pour tout a,b
+egale(test_unitaire_egale(1,300)[0],test_unitaire_egale(1,300)[1]) #doit retourner False pour tout a,b
 
 def joue_ligne(ligne):
     res = []
@@ -25,6 +44,8 @@ def joue_ligne(ligne):
     while len(res) < len(ligne):
         res.append(0)
     return res
+
+
 
 def joue(mat, direction):
     if direction == 0:                                              # 0 : gauche
